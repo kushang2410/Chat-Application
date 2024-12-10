@@ -20,7 +20,7 @@ export const ChatProvider = ({ children }) => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/users');
+      const response = await axios.get('https://chat-application-bt6s.onrender.com/users');
       setUsers(response.data.filter(u => u.id !== user.id));
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -30,7 +30,7 @@ export const ChatProvider = ({ children }) => {
   const fetchChats = async () => {
     if (!user) return;
     try {
-      const response = await axios.get('http://localhost:3001/chats');
+      const response = await axios.get('https://chat-application-bt6s.onrender.com/chats');
       setChats(response.data.filter(chat => 
         chat.senderId === user.id || chat.receiverId === user.id
       ));
@@ -48,7 +48,7 @@ export const ChatProvider = ({ children }) => {
         type,
         timestamp: new Date().toISOString(),
       };
-      const response = await axios.post('http://localhost:3001/chats', newMessage);
+      const response = await axios.post('https://chat-application-bt6s.onrender.com/chats', newMessage);
       setChats([...chats, response.data]);
       return response.data;
     } catch (error) {
@@ -65,7 +65,7 @@ export const ChatProvider = ({ children }) => {
       );
       
       for (const chat of chatsToClear) {
-        await axios.delete(`http://localhost:3001/chats/${chat.id}`);
+        await axios.delete(`https://chat-application-bt6s.onrender.com/chats/${chat.id}`);
       }
       
       setChats(chats.filter(chat => 

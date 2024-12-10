@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (phone, password) => {
     try {
-      const response = await axios.get('http://localhost:3001/users');
+      const response = await axios.get('https://chat-application-bt6s.onrender.com/users');
       const user = response.data.find(u => u.phone === phone && u.password === password);
       
       if (user) {
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await axios.post('http://localhost:3001/users', userData);
+      const response = await axios.post('https://chat-application-bt6s.onrender.com/users', userData);
       return response.data;
     } catch (error) {
       console.error('Registration error:', error);
